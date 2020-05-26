@@ -51,6 +51,20 @@
                         <label for="">จำนวนผุ้เข้าร่วม</label>
                         <input type="text" class="form-control">
                      </div>
+                     <div class="col-md-6">
+                        <label for="">ประเภทกิจกรรม</label>
+                        <div class="form-group">
+                           <div class="custom-control custom-checkbox custom-control-inline">
+                              <input type="checkbox" class="custom-control-input" id="customCheck5">
+                              <label class="custom-control-label" for="customCheck5">กิจกรรมบังคับ</label>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row mb-3">
+                     <div class="col-md-12">
+                        <label for="">รายละเอียด</label>
+                     </div>
                   </div>
                </div>
             </div>

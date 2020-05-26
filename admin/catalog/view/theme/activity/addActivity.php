@@ -13,7 +13,45 @@
                   </div>
                </div>
                <div class="iq-card-body">
-                  
+                  <div class="row mb-3">
+                     <div class="col-md-6">
+                        <label for="">ปีการศึกษา</label>
+                        <input type="text" class="form-control">
+                     </div>
+                     <div class="col-md-6">
+                        <label for="">ชื่อกิจกรรม</label>
+                        <input type="text" class="form-control">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <label for="">ช่วงเวลากิจกรรม</label>
+                     </div>
+                  </div>
+                  <div class="row mb-3">
+                     <div class="col-md-6">
+                        <input type="datetime-local" class="form-control">
+                     </div>
+                     <div class="col-md-6">
+                        <input type="datetime-local" class="form-control">
+                     </div>
+                  </div>
+                  <div class="row mb-3">
+                     <div class="col-md-6">
+                        <label for="">สถานที่จัด</label>
+                        <input type="text" class="form-control">
+                     </div>
+                     <div class="col-md-6">
+                        <label for="">ประธาน</label>
+                        <input type="text" class="form-control">
+                     </div>
+                  </div>
+                  <div class="row mb-3">
+                     <div class="col-md-6">
+                        <label for="">จำนวนผุ้เข้าร่วม</label>
+                        <input type="text" class="form-control">
+                     </div>
+                  </div>
                </div>
             </div>
          </div>

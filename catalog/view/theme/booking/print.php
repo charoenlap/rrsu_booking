@@ -58,7 +58,7 @@
         <div class="subpage">
         	<div class="float-right text-center" style="position: absolute; border: 1px solid #333; padding: 5px; right: 20mm;">
         		<p class="mb-0">ลำดับที่</p>
-				<h4 class="mb-0">50</h4>
+				<h4 class="mb-0"><?php echo $detail['take_event_no']; ?></h4>
         	</div>
         	<div class="row mb-3">
         		<div class="col-sm-12 text-center">
@@ -66,7 +66,7 @@
         			<p>กองพัฒนานักศึกษา</p>
         			<p>มหาวิทยาลัยราชภัฏสวนสุนันทา</p>
         			<br>
-        			<p>โครงการส่งเสริมจริยธรรมและคุณธรรม ประจำปี พ.ศ. 2563 ภาคเรียนที่ 1/2563 ครั้งที่</p>
+        			<p><?php echo $detail['event_name']; ?></p>
         		</div>
         	</div>
         	<div class="row">
@@ -74,7 +74,7 @@
         			<p>รหัสนักศึกษา :</p>
         		</div>
         		<div class="col-sm-9">
-        			<p>1234567890</p>
+        			<p><?php echo $stu_code; ?></p>
         		</div>
         	</div>
         	<div class="row">
@@ -82,7 +82,7 @@
         			<p>ชื่อ - นามสกุล :</p>
         		</div>
         		<div class="col-sm-9">
-        			<p>1234567890</p>
+        			<p><?php echo $stu_prefix; ?> <?php echo $stu_name; ?></p>
         		</div>
         	</div>
         	<div class="row">
@@ -90,15 +90,15 @@
         			<p>โปรแกรม/สาขาวิชา :</p>
         		</div>
         		<div class="col-sm-9">
-        			<p>2230-พยาบาลศาสตร์</p>
+        			<p><?php echo $student_detail['branch_name']; ?></p>
         		</div>
         	</div>
         	<div class="row">
         		<div class="col-sm-3">
-        			<p>คณะ/วิทยาลัย  :</p>
+        			<p>คณะ/วิทยาลัย :</p>
         		</div>
         		<div class="col-sm-9">
-        			<p>วิทยาลัยพยาบาลและสุขภาพ</p>
+        			<p><?php echo $student_detail['group_name']; ?></p>
         		</div>
         	</div>
         	<div class="row">
@@ -106,7 +106,7 @@
         			<p>ระดับการศึกษา :</p>
         		</div>
         		<div class="col-sm-9">
-        			<p>ปริญญาตรี (ภาคปกติ)</p>
+        			<p><?php echo $student_detail['level_name']; ?></p>
         		</div>
         	</div>
         	<div class="row">
@@ -114,7 +114,7 @@
         			<p>ศูนย์ให้การศึกษา :</p>
         		</div>
         		<div class="col-sm-9">
-        			<p>สวนสุนันทา</p>
+        			<p><?php echo $student_detail['center_name']; ?></p>
         		</div>
         	</div>
         	<div class="row">
@@ -123,9 +123,9 @@
         		</div>
         		<div class="col-sm-9">
         			<p>
-        				โครงการส่งเสริมจริยธรรมและคุณธรรม ประจำปี พ.ศ. 2561 ภาคเรียนที่ 1/2561 ครั้งที่ 5 <br>
-        				วันที่ 16 ตุลาคม 2561 เวลา 12.00 น. ถึง 16.00 น. <br>
-        				ลำดับที่จอง : 29
+        				<?php echo $detail['event_name']; ?><br>
+        				<?php echo $detail['event_detail']; ?><br>
+        				ลำดับที่จอง : <?php echo $detail['take_event_no']; ?>
         			</p>
         		</div>
         	</div>
@@ -143,8 +143,7 @@
     							</div>
     							<div class="col-md-10">
     								<p class="pt-2">
-    									โครงการส่งเสริมจริบธรรมและคุณธรรม ประจำปี <br>
-    									พ.ศ. 2561 ภาคเรียนที่ 1/2561 ครั้งที่ 5 
+    									<?php echo $detail['event_name']; ?>
     								</p>
     							</div>
     						</div>
@@ -152,14 +151,13 @@
         				<div class="card-body">
         					<div class="row">
         						<div class="col-md-6">
-        							<p class="mb-0">รหัสนักศึกษา 1234567890</p>
-        							<p class="mb-0">1234567890</p>
-        							<p class="mb-0">สาขา พยาบาลศาสตร์</p>
-        							<p class="mb-0">คณะ วิทยาลัยพยาบาลและสุขภาพ</p>
+        							<p class="mb-0">รหัสนักศึกษา <?php echo $stu_code; ?></p>
+        							<p class="mb-0">สาขา <?php echo $student_detail['branch_name']; ?></p>
+        							<p class="mb-0">คณะ <?php echo $student_detail['group_name']; ?></p>
         						</div>
         						<div class="col-md-6">
-        							<p class="mb-0">วันนัด 16 ตุลาคม 2561</p>
-        							<p class="mb-0">เวลา 12.00 น. ถึง 16.00 น.</p>
+        							<p class="mb-0">วันนัด <?php echo date_f($detail['event_date_start'],'Y-m-d'); ?></p>
+        							<p class="mb-0">เวลา <?php echo date_f($detail['event_date_start'],'H:i'); ?></p>
         						</div>
         					</div>
         				</div>
@@ -177,19 +175,22 @@
         		</div>
         	</div>
         	<div class="row">
-    			<div class="col-sm-7">
-    				<div class="card rounded-0">
+    			<div class="col-sm-9">
+                    <?php echo $barcode; ?>
+                    
+    				<!-- <div class="card rounded-0">
     					<div class="card-body">
     						<div class="row">
     							<div class="col-sm-12 text-center">
-    								<p class="mb-0">dsfkqwpkprk</p>
+    								<p class="mb-0"></p>
     							</div>
     						</div>
     					</div>
-    				</div>
+    				</div> -->
     			</div>
-    			<div class="col-sm-5">
-    				<img src="assets/images/barcode.jpg" alt="" class="w-100">
+    			<div class="col-sm-3 text-right">
+    				<!-- <img src="assets/images/barcode.jpg" alt="" class="w-100"> -->
+                    <img src="qrcode/<?php echo $id_take_event;?>.png" alt="" class="w-100">
     			</div>
     		</div>
         </div>    

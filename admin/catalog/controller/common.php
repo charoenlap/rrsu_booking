@@ -1,6 +1,7 @@
 <?php 
 	class CommonController extends Controller {
 	    public function header($data=array()) {
+	    	// var_dump($data);
 	    	$this->render('common/header',$data);
 	    }
 	    public function footer($data=array()){

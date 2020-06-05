@@ -10,19 +10,25 @@
                   </div>
                </div>
                <div class="iq-card-body">
-                  <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="customFile">
-                              <label class="custom-file-label" for="customFile">Choose file</label>
+                  <form action="<?php echo $action; ?>" method="POST"  enctype="multipart/form-data">
+                     <input type="hidden" name="route" value="<?php echo $route;?>">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <div class="custom-file"> 
+                                 <input type="file" class="custom-file-input" id="" name="file_name">
+                                 <label class="custom-file-label" for="">Choose file</label>
+                              </div>
                            </div>
                         </div>
+                        <div class="col-md-6">
+                           <button class="btn btn-primary">อัพโหลด</button>
+                        </div>
                      </div>
-                     <div class="col-md-6">
-                        <button class="btn btn-primary">Submit</button>
-                     </div>
-                  </div>
+                     <?php if($result=='success'){?>
+                     <p class="alert alert-success">อัพโหลดเรียบร้อย พร้อมอัพเดทกิจกรรมที่อัพโหลดของนักศึกษา</p>
+                     <?php } ?>
+                  </form>
                </div>
             </div>
          </div>
@@ -40,17 +46,22 @@
                      <table class="table mb-0 table-bordered" id="datatables">
                         <thead>
                            <tr>
-                              <th scope="col" class="text-center" width="10%">No</th>
+                              <th scope="col" class="text-center" width="10%">ลำดับ</th>
                               <th scope="col">ไพล์</th>
-                              <th scope="col" class="text-center">Action</th>
+                              <th>วันที่</th>
+                              <th scope="col" class="text-center"></th>
                            </tr>
                         </thead>
                         <tbody>
+                           <?php $i=1;foreach($list_upload as $val){ ?>
                            <tr>
-                              <td class="text-center">1</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td class="text-center"><button class="btn btn-info">View</button></td>
+                              <td class="text-center"><?php echo $i;
+                               ?></td>
+                              <td><?php echo $val['file_name']; ?></td>
+                              <td><?php echo $val['date_create']; ?></td>
+                              <td class="text-center"><a class="btn btn-info" href="upload_approve/<?php echo $val['file_name']; ?>" target="_blank">ดาวน์โหลดไฟล์</a></td>
                            </tr>
+                           <?php $i++;} ?>
                         </tbody>
                      </table>
                   </div>

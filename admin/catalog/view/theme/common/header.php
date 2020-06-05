@@ -61,6 +61,15 @@
       <!-- Datatables -->
       <script src="assets/datatables/datatables.min.js"></script>
       <script src="assets/datatables/dataTables.bootstrap4.min.js"></script>
+       <?php if(isset($style)){ 
+            foreach ($style as $key => $value) { ?>
+          <link rel="stylesheet" href="<?php echo $value;?>">
+        <?php } } ?>
+        <?php 
+        if(isset($script)){
+        foreach ($script as $key => $value) { ?>
+          <script src="<?php echo $value;?>"></script>
+        <?php } } ?>
    </head>
    <body>
       <!-- loader Start -->
@@ -90,7 +99,7 @@
                <ul class="iq-menu">
                   <li class="iq-menu-title"><i class="ri-separator"></i><span>Main</span></li>
                   <li id="dashboard"><a href="<?php echo route('dashboard/dashboard'); ?>" class="iq-waves-effect"><i class="las la-home"></i><span>Dashboard</span></a></li>
-                  <li id="banner"><a href="<?php echo route('banner/home'); ?>" class="iq-waves-effect"><i class="las la-image"></i><span>Banner</span></a></li>
+                  
                   <li id="student"><a href="<?php echo route('student/home'); ?>" class="iq-waves-effect"><i class="las la-user-graduate"></i><span>ข้อมุลนักศึกษา</span></a></li>
                   <!-- <li id="activity"><a href="<?php echo route('activity/home'); ?>" class="iq-waves-effect"><i class="las la-calendar-check"></i><span>กิจกรรม</span></a></li> -->
                   <li id="activity">
@@ -242,6 +251,7 @@
                         <li><a href="pages-faq.html">Faq</a></li>
                      </ul>
                   </li> -->
+                  <li id="banner"><a href="<?php echo route('banner/home'); ?>" class="iq-waves-effect"><i class="las la-image"></i><span>ตั้งค่า</span></a></li>
                </ul>
             </nav>
             <div class="p-3"></div>

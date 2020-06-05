@@ -14,7 +14,7 @@
 
   <!-- Stylesheets -->
   <?php if(isset($style)){ 
-    foreach ($style as $key => $value) { ?>
+      foreach ($style as $key => $value) { ?>
     <link rel="stylesheet" href="<?php echo $value;?>">
   <?php } } ?>
   <link rel="stylesheet" href="assets/boostrap_jquery/css/bootstrap.min.css">
@@ -23,54 +23,6 @@
 
   <link rel="stylesheet" href="assets/css/main.css">
 
-  <!-- Skin tools (demo site only) -->
-  <!-- <link rel="stylesheet" href="assets/global/css/skintools.min.css"> -->
-  <!-- <script src="assets/js/Plugin/skintools.min.js"></script> -->
-
-  <!-- Plugins -->
-  <link rel="stylesheet" href="assets/global/vendor/animsition/animsition.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/asscrollable/asScrollable.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/switchery/switchery.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/intro-js/introjs.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/slidepanel/slidePanel.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/jquery-mmenu/jquery-mmenu.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/flag-icon-css/flag-icon.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/waves/waves.min.css">
-  <link rel="stylesheet" href="assets/examples/css/dashboard/v1.min.css">
-
-  <!-- Plugins For This Page -->
-  <link rel="stylesheet" href="assets/global/vendor/blueimp-file-upload/jquery.fileupload.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/dropify/dropify.min.css">
-
-  <link rel="stylesheet" href="assets/global/vendor/jquery-wizard/jquery-wizard.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/formvalidation/formValidation.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/select2/select2.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/bootstrap-tokenfield/bootstrap-tokenfield.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/bootstrap-select/bootstrap-select.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/switchery/switchery.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/asrange/asRange.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/ionrangeslider/ionrangeslider.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/asspinner/asSpinner.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/clockpicker/clockpicker.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/ascolorpicker/asColorPicker.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/bootstrap-touchspin/bootstrap-touchspin.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/jquery-labelauty/jquery-labelauty.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/bootstrap-datepicker/bootstrap-datepicker.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/bootstrap-maxlength/bootstrap-maxlength.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/timepicker/jquery-timepicker.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/jquery-strength/jquery-strength.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/multi-select/multi-select.min.css">
-  <link rel="stylesheet" href="assets/global/vendor/typeahead-js/typeahead.min.css">
-
-
-  <!-- Fonts -->
-  <link rel="stylesheet" href="assets/global/fonts/material-design/material-design.min.css">
-  <link rel="stylesheet" href="assets/global/fonts/font-awesome/font-awesome.min.css">
-  <link rel="stylesheet" href="assets/global/fonts/brand-icons/brand-icons.min.css">
-  <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700">
-
-  <link rel="stylesheet" href="assets/css/jquery.toast.min.css">
   
   <!--[if lt IE 9]>
     <script src="assets/global/vendor/html5shiv/html5shiv.min.js"></script>
@@ -81,27 +33,16 @@
     <script src="assets/global/vendor/respond/respond.min.js"></script>
     <![endif]-->
 
-  <!-- Scripts -->
-  <script src="assets/global/vendor/breakpoints/breakpoints.min.js"></script>
-  <script>
-    Breakpoints();
-  </script>
-  <!-- Core  -->
-  <script src="assets/global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
-  <script src="assets/global/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/global/vendor/popper-js/umd/popper.min.js"></script>
-  <script src="assets/global/vendor/bootstrap/bootstrap.min.js"></script>
-  <script src="assets/global/vendor/animsition/animsition.min.js"></script>
-  <script src="assets/global/vendor/mousewheel/jquery.mousewheel.min.js"></script>
-  <script src="assets/global/vendor/asscrollbar/jquery-asScrollbar.min.js"></script>
-  <script src="assets/global/vendor/asscrollable/jquery-asScrollable.min.js"></script>
-  <script src="assets/global/vendor/waves/waves.min.js"></script>
-  <script src="assets/js/jquery.toast.min.js"></script>
 
   <script src="assets/boostrap_jquery/js/jquery.js"></script>
   <script src="assets/boostrap_jquery/js/popper.js"></script>
   <script src="assets/boostrap_jquery/js/bootstrap.min.js"></script>
   <script src="assets/fontawesome/js/all.js"></script>
+  <?php 
+  if(isset($script)){
+  foreach ($script as $key => $value) { ?>
+    <script src="<?php echo $value;?>"></script>
+  <?php } } ?>
 </head>
 <body class="<?php echo (isset($class_body)?$class_body:''); ?>">
   <!--[if lt IE 8]>
@@ -116,12 +57,12 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-user"></i> รหัสนักศึกษา 61122230103 นาย ก. ระดับชั้นปี 1
+          <i class="fa fa-user"></i> รหัสนักศึกษา <?php echo $stu_code; ?> <?php echo $stu_prefix; ?> <?php echo $stu_name; ?> <?php echo $stu_lname; ?> <?php echo $stu_detail['level_name']; ?>
         </a>
         <div class="dropdown-menu rounded-0" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?php echo route('member/edit'); ?>">แก้ไขข้อมูลส่วนตัว</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="<?php echo route('home'); ?>">ออกจากระบบ</a>
+          <a class="dropdown-item" href="<?php echo route('home/logout'); ?>">ออกจากระบบ</a>
         </div>
       </li>
     </ul>
@@ -132,19 +73,19 @@
   <div class="row my-3">
     <div class="col-md-4">
       <a href="<?php echo route('activity/home'); ?>" class="menu-card" id="activity">
-        <img src="https://via.placeholder.com/1920" alt="" class="w-100">
+        <img src="uploads/setting/<?php echo $banner_1; ?>" alt="" class="w-100">
         <p>ตรวจสอบกิจกรรมที่ได้เข้าร่วม</p>
       </a>
     </div>
     <div class="col-md-4">
       <a href="<?php echo route('check/home'); ?>" class="menu-card" id="check">
-        <img src="https://via.placeholder.com/1920" alt="" class="w-100">
+        <img src="uploads/setting/<?php echo $banner_2; ?>" alt="" class="w-100">
         <p>ตรวจสอบคะแนนพฤติกรรม</p>
       </a>
     </div>
     <div class="col-md-4">
       <a href="<?php echo route('booking/home'); ?>" class="menu-card" id="booking">
-        <img src="https://via.placeholder.com/1920" alt="" class="w-100">
+        <img src="uploads/setting/<?php echo $banner_3; ?>" alt="" class="w-100">
         <p>เข้าจองกิจกรรม</p>
       </a>
     </div>

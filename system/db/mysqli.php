@@ -131,6 +131,7 @@ class db{
 			if($i!=count($input)){ $insert .= ","; }
 			$i++;
 		}
+		// echo $insert;
 		$query = $this->db->query($insert) or die($this->db->error);
 		if (!$this->db->errno) {
 			$result = ($query?$this->getLastId():false);

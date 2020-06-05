@@ -6,37 +6,35 @@
             <div class="iq-card">
                <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
-                     <h4 class="card-title">Banner</h4>
-                  </div>
-                  <div class="iq-card-header-toolbar d-flex align-items-center">
-                     <a href="<?php echo route('banner/addBanner'); ?>" class="btn btn-primary">เพิ่ม</a>
+                     <h4 class="card-title">ตั้งค่า</h4>
                   </div>
                </div>
                <div class="iq-card-body">
-                  <div class="table-responsive">
-                     <table class="table mb-0 table-bordered" id="datatables">
-                        <thead>
-                           <tr>
-                              <th scope="col" class="text-center">No</th>
-                              <th scope="col">name</th>
-                              <th scope="col">Last Update</th>
-                              <th scope="col" class="text-center">Action</th>
-
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td class="text-center">1</td>
-                              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
-                              <td>30/12/2019</td>
-                              <td class="text-center">
-                                 <!-- <a href="" class="btn btn-info">View</a> -->
-                                 <button class="btn btn-primary">Edit</button>
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
+                  <form action="<?php echo $action; ?>" method="POST" enctype="multipart/form-data">
+                     <input type="hidden" name="id_setting" value="<?php echo $id_setting; ?>">
+                     <div class="row mb-3">
+                        <div class="col-md-6">
+                           <label for="">ชื่อ</label>
+                           <?php Form::text('setting_name','ชื่อ',is($setting,'setting_name')); ?>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="">อัพโหลดไฟล์</label>
+                              <?php echo is($setting,'setting_value'); ?>
+                              <div class="custom-file">
+                                 <input type="file" class="custom-file-input" id="customFile" name="setting_file">
+                                 <label class="custom-file-label" for="customFile">Choose file</label>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <input type="submit" value="บันทึก" class="btn btn-primary">
+                           <a href="<?php echo route('banner/home'); ?>" class="btn">กลับ</a>
+                        </div>
+                     </div>
+                  </form>
                </div>
             </div>
          </div>
@@ -44,10 +42,10 @@
    </div>
 </div>
 
-<script>
+<!-- <script>
    $(document).ready(function() {
       $('#banner').addClass('active');
    });
    $('#datatables').DataTable();
 </script>
-      
+       -->

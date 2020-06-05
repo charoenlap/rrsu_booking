@@ -1,21 +1,22 @@
 <?php
+	
 	$base = str_replace('required', '', __DIR__);
-	define('MURL','http://localhost/code/');
+	define('MURL','http://localhost/ssru_booking/');
 	// define('MURL','https://www.fsoftpro.com/dohung/');
-	define('DOCUMENT_ROOT',$_SERVER['DOCUMENT_ROOT'].'/code/');
+	define('DOCUMENT_ROOT',$_SERVER['DOCUMENT_ROOT'].'/ssru_booking/');
 	// define('AURL',MURL.'admin/');
 	define('DEFAULT_PAGE','home');
-	define('WEB_NAME','Dohung');
+	define('WEB_NAME','');
 	define('IMAGE_PHOTO',MURL.'uploads/photo/');
 	define('NO_PHOTO',MURL.'uploads/no_photo.jpg');
 	define('DB','mysqli');
 	
 	// Config DB localhost
-	define('PREFIX', 'sl_');
+	define('PREFIX', 'booking_');
 	define('DB_HOST','localhost');
-	define('DB_USER','fsoftpro_book');
-	define('DB_PASS','afreeoUXZi');
-	define('DB_DB','fsoftpro_book');
+	define('DB_USER','root');
+	define('DB_PASS','root');
+	define('DB_DB','ssru_booking');
 
 	// Production
 	// define('PREFIX', 'dh_');
@@ -26,7 +27,7 @@
 
 	// System config 
 	define('DEFAULT_LANGUAGE','2');
-	define('DEFAULT_LIMIT_PAGE','30');
+	define('DEFAULT_LIMIT_PAGE','100');
 
 
 	// define('email_username','support@fsoftpro.com');

@@ -1,7 +1,8 @@
 <?php  
 	class homeController extends Controller{
 		public function index(){
-			$this->view('home');
+			$data = array();
+			$this->view('home',$data);
 		}
 	}
 ?>

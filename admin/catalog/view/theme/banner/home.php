@@ -6,10 +6,7 @@
             <div class="iq-card">
                <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
-                     <h4 class="card-title">Banner</h4>
-                  </div>
-                  <div class="iq-card-header-toolbar d-flex align-items-center">
-                     <button class="btn btn-primary">เพิ่ม</button>
+                     <h4 class="card-title">ตั้งค่า</h4>
                   </div>
                </div>
                <div class="iq-card-body">
@@ -17,23 +14,30 @@
                      <table class="table mb-0 table-bordered" id="datatables">
                         <thead>
                            <tr>
-                              <th scope="col" class="text-center">No</th>
-                              <th scope="col">name</th>
-                              <th scope="col">Last Update</th>
-                              <th scope="col" class="text-center">Action</th>
+                              <th scope="col" class="text-center" style="width:70px;">ลำดับ</th>
+                              <th style="width:70px;"></th>
+                              <th scope="col">ชื่อ</th>
+                              <th scope="col" style="width:70px;">วันที่แก้ไข</th>
+                              <th scope="col" class="text-center" style="width:70px;">แก้ไข</th>
 
                            </tr>
                         </thead>
                         <tbody>
+                           <?php $i=1;foreach($setting as $val){ ?>
                            <tr>
-                              <td class="text-center">1</td>
-                              <td>หน้าหลัก</td>
-                              <td>30/12/2019</td>
+                              <td class="text-center"><?php echo $i; ?></td>
+                              <td>
+                                 <?php if($val['setting_type']=="1"){?>
+                                 <img src="../uploads/setting/<?php echo $val['setting_value']; ?>" alt="" style="width:150px;">
+                                 <?php } ?>
+                              </td>
+                              <td><?php echo $val['setting_name']; ?></td>
+                              <td><?php echo (!empty($val['date_update'])?date_f($val['date_update'],'Y-m-d'):''); ?></td>
                               <td class="text-center">
-                                 <a href="<?php echo route('banner/subBanner'); ?>" class="btn btn-info">View</a>
-                                 <button class="btn btn-primary">Edit</button>
+                                 <a href="<?php echo route('banner/subBanner&id_setting='.$val['id_setting']); ?>" class="btn btn-info">แก้ไข</a>
                               </td>
                            </tr>
+                           <?php $i++;} ?>
                         </tbody>
                      </table>
                   </div>

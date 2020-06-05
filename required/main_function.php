@@ -1,4 +1,298 @@
 <?php
+	function getCurrentYear($stu_year){
+		$result = 0;
+		$year = date('Y')+543;
+		$result = ((substr($year,2,2)) - $stu_year) + 1;
+		return $result;
+	}
+	function exportExcel($name='',$path='',$data= array()){
+		require_once(DOCUMENT_ROOT.'system/lib/PHPExcel/vendor/autoload.php');
+		$objPHPExcel = new PHPExcel();
+        $objPHPExcel->getProperties()->setCreator("friendlysoftpro")
+                                     ->setLastModifiedBy("friendlysoftpro")
+                                     ->setTitle("Office 2007 XLSX Document")
+                                     ->setSubject("Office 2007 XLSX Document")
+                                     ->setDescription("document for Office 2007 XLSX, generated using PHP classes.")
+                                     ->setKeywords("office 2007 openxml php")
+                                     ->setCategory("result file");
+        $objPHPExcel->setActiveSheetIndex(0);
+        
+        $count_row = 1;
+        foreach($data as $val){
+        	$count_col = 1;
+        	foreach($val as $v){
+        		$objPHPExcel->getActiveSheet()->setCellValue(chr(64+$count_col).$count_row, $v);
+        		$count_col++;
+        	}
+	        $count_row++; 
+	    }
+        $objPHPExcel->getActiveSheet()->setTitle($name);
+        $objPHPExcel->getSecurity()->setLockWindows(false);
+        $objPHPExcel->getSecurity()->setLockStructure(false);
+        $objPHPExcel->setActiveSheetIndex(0);
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+
+        // $objWriter->save(str_replace('export.php', $filename,  __FILE__));
+        $objWriter->save(DOCUMENT_ROOT.$path.$name);
+        // header('location:excel/ '.$name); 
+	}
+	function readExcel($path,$first_row=2){
+		require_once(DOCUMENT_ROOT.'system/lib/PHPExcel/vendor/autoload.php');
+		$objPHPExcel = new PHPExcel();
+
+		$inputFileName = DOCUMENT_ROOT.$path; 
+	   // Read Excel
+	   $page = 0;
+
+	   $inputFileType = PHPExcel_IOFactory::identify($inputFileName); 
+	   $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
+	   $objReader->setReadDataOnly(true); 
+	   $objPHPExcel = $objReader->load($inputFileName); 
+
+	   $objWorksheet = $objPHPExcel->setActiveSheetIndex($page);
+	   $highestRow = $objWorksheet->getHighestRow();
+	   $highestColumn = $objWorksheet->getHighestColumn();
+
+	   $headingsArray = $objWorksheet->rangeToArray('A1:'.$highestColumn.'1',null, true, true, true);
+	   $headingsArray = $headingsArray[1];
+	   $r = -1;
+	   $namedDataArray = array();
+	   $address = array();
+	   for ($row = $first_row; $row <= $highestRow; ++$row) {
+	    $dataRow = $objWorksheet->rangeToArray('A'.$row.':'.$highestColumn.$row,null, true, true, true);
+	    // var_dump($dataRow);
+	    if ((isset($dataRow[$row]['A'])) && ($dataRow[$row]['A'] > '')) {
+	     ++$r;
+	     foreach($headingsArray as $columnKey => $columnHeading) {
+	      $namedDataArray[$r][] = $dataRow[$row][$columnKey];
+	     }
+	    }
+	   }
+	   return $namedDataArray;
+	}
+	function id_admin(){
+		$result 	= '';
+		$id_admin 		= (isset($_SESSION['id_admin'])?$_SESSION['id_admin']:'');
+    	if(!empty($token) AND !empty($key)){
+	    	$result = $id_admin;
+	    }else{
+	    	header('location:index.php?route=home/login');
+	    }
+	    return $result;
+	}
+	function page_404(){
+		echo 'ไม่พบหน้านี้ <a href="index.php">กลับ</a>';
+		exit();
+	}
+	function is($val,$index){
+		return (isset($val[$index])?$val[$index]:'');
+	}
+	function limit($page,$total_limit=0){
+		$text_limit = 0;
+		$limit = $total_limit;
+		if($total_limit==0){
+			$limit = DEFAULT_LIMIT_PAGE;
+		}
+		$page = ($page-1)*$limit;
+		$text_limit = ' LIMIT '.$page.','.$limit;
+		return $text_limit;
+	}
+	function date_f($date_text,$format=''){
+		if(empty($format)){
+			$format = DATE_FORMAT;
+		}
+		$result = '';
+		if(!empty($date_text)){
+			$result = date($format,strtotime($date_text));
+		}
+		return $result;
+	}
+	function rutime($ru, $rus, $index) {
+	    return ($ru["ru_$index.tv_sec"]*1000 + intval($ru["ru_$index.tv_usec"]/1000))
+	     -  ($rus["ru_$index.tv_sec"]*1000 + intval($rus["ru_$index.tv_usec"]/1000));
+	}
+	function id_company(){
+		if(DEBUG_MODE==true){
+			$result=1;
+		}else{
+			$result 	= '';
+			$encode_id_company = (isset($_SESSION['encode_id_company'])?$_SESSION['encode_id_company']:error('Not found session id company'));
+			$id_user = id_user();
+			$id_company = decode($encode_id_company,$id_user);
+			$result = $id_company;
+			if(empty($result) OR $result==0){
+				// header('location: index.php?route=dashboard/home');
+			}
+		}
+		return $result;
+	}
+	function id_student(){
+		// if(DEBUG_MODE==true){
+		// 	$result=1;
+		// }else{
+			$result 	= '';
+			$id_student 		= (isset($_SESSION['id_student'])?$_SESSION['id_student']:'');
+	  //   	$key 		= (isset($_SESSION['user_key'])?$_SESSION['user_key']:'');
+	    	// if(empty($token)){
+	    	// 	error('Not found session token');
+	    	// }
+	    	// if(empty($key)){
+	    	// 	error('Not found session key');
+	    	// }
+	    	if(!empty($id_student)){
+		    	$result 	= $_SESSION['id_student'];
+		    }else{
+		    	header('location:index.php?route=home');
+		    }
+		// }
+		return $result;
+	}
+	function error($text){
+		$result = '';
+		$result = '<div id="errMsg" class="alert alert-danger"><div class="text-danger">'.$text.'</div></div>';
+	}
+
+	function fsp_crypt( $string, $action = 'e' ) {
+	    $secret_key = 'fsp@friendlysoftpro#secret-key568';
+	    $secret_iv = 'fsp@friendlysoftpro#secret-iv568';
+	    $output = false;
+	    $encrypt_method = "AES-256-CBC";
+	    $key = hash( 'sha256', $secret_key );
+	    $iv = substr( hash( 'sha256', $secret_iv ), 0, 16 );
+	    if( $action == 'e' ) {
+	        $output = base64_encode( openssl_encrypt( $string, $encrypt_method, $key, 0, $iv ) );
+	    }
+	    else if( $action == 'd' ){
+			$output = openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv );
+	    }
+	    return $output;
+	}
+
+	function encrypt($string){
+		$salting = substr(md5(microtime()),-1) . $string;
+		return fsp_crypt( $salting, 'e' );
+	}
+
+	function decrypt($string){
+		$encode = fsp_crypt( $string, 'd' );
+		return substr($encode, 1);
+	}
+	function encode($string,$key) {
+	    $key = sha1($key);
+	    $strLen = strlen($string);
+	    $keyLen = strlen($key);
+	    $i=0;$j=0;$hash='';
+	    for ($i = 0; $i < $strLen; $i++) {
+	        $ordStr = ord(substr($string,$i,1));
+	        if ($j == $keyLen) { $j = 0; }
+	        $ordKey = ord(substr($key,$j,1));
+	        $j++;
+	        $hash .= strrev(base_convert(dechex($ordStr + $ordKey),16,36));
+	    }
+	    return $hash;
+	}
+
+	function decode($string,$key) {
+	    $key = sha1($key);
+	    $strLen = strlen($string);
+	    $keyLen = strlen($key);
+	    $i=0;$j=0;$hash='';
+	    for ($i = 0; $i < $strLen; $i+=2) {
+	        $ordStr = hexdec(base_convert(strrev(substr($string,$i,2)),36,16));
+	        if ($j == $keyLen) { $j = 0; }
+	        $ordKey = ord(substr($key,$j,1));
+	        $j++;
+	        $hash .= chr($ordStr - $ordKey);
+	    }
+	    return $hash;
+	}
+
+	function pure_text($text){
+		$resut = '';
+		$text = trim($text);
+		$text = strtolower($text);
+		$result = $text;
+		return $result;
+	}
+	function data_to_html($data=array()){
+		$html_data = '';
+		$i =0;
+		$j=0;
+		$count_col = 0;
+		foreach($data as $val){
+			$count_col = count($val);
+			$html_data .= '<tr id="'.$i.'">';
+			foreach($val as $k => $v){
+				$html_data .= '<td id="'.$i.'_'.$j.'">'.$val[$k].'</td>';
+			}
+			$html_data .= '</tr>';
+			$i++;
+		}
+		$count_data = count($data);
+		// echo $count_data.' '.ROW_IN_DOC;exit();
+		if($count_data<ROW_IN_DOC){
+			for($i=$count_data;$i<=ROW_IN_DOC;$i++){
+				$html_data .= '<tr>';
+				for($j=1;$j<=$count_col;$j++){
+					if($i==ROW_IN_DOC){
+						$html_data .= '<td style="border-bottom:solid 1px #000;">&nbsp;</td>';
+					}else{
+						$html_data .= '<td style="border-top:solid 1px #fff;border-bottom:solid 1px #fff;">&nbsp;</td>';
+					}
+				}
+				$html_data .= '</tr>';
+			}
+		}
+		return $html_data;
+	}
+	function pageing($data=array()){
+		$total = (int)$data['total'];
+		$link  = $data['link'];
+		$active = ($data['active']?$data['active']:1);
+
+		$pageing = '<nav>
+			  <ul class="pagination">
+			    <li class="page-item '.($active==1?'disabled':'').'">
+			      <span class="page-link">Previous</span>
+			    </li>';
+		for($i=1;$i<=ceil($total/DEFAULT_LIMIT_PAGE);$i++){
+			if($i==$active){
+				$pageing .= '<li class="page-item active" aria-current="page">
+			      <span class="page-link">
+			        '.$i.'
+			        <span class="sr-only">(current)</span>
+			      </span>
+			    </li>';
+			}else{
+				$pageing .= '<li class="page-item"><a class="page-link" href="'.$link.'&page='.$i.'">'.$i.'</a></li>';
+			}
+		}
+		$pageing .= '<li class="page-item '.($total==$active?'disabled':'').'">
+			      <a class="page-link" href="'.($total==$active?$link:'').'">Next</a>
+			    </li>
+			  </ul>
+			</nav>';
+		return $pageing;
+	}
+	function breadcrumb($data=array()){
+		$breadcrumb = '';
+		if($data){
+			$i=1;
+			$active_class = 'active';
+			$active_add = 'aria-current="page"';
+
+			$breadcrumb = '<nav aria-label="breadcrumb"><ol class="breadcrumb">';
+			foreach($data as $val){ 
+				if(isset($val['active'])){
+					$breadcrumb .= '<li class="breadcrumb-item active" aria-current="page">'.$val['text'].'</li>';
+				}else{ 
+					$breadcrumb .= '<li class="breadcrumb-item"><a href="'.$val['url'].'">'.$val['text'].'</a></li>';
+				} 
+			}
+			$breadcrumb .= '</ol></nav>';
+		}
+		return $breadcrumb;
+	}
 	function lang($text='',$index=''){
 		$result = $text;
 		return $result;
@@ -160,6 +454,7 @@
 	}
 	
 	function sendmail($to_email="",$msg="",$subject=""){
+		global $mail;
 		$email_username = email_username;
 		$email_password = email_password;
 		$email_host = email_host;
@@ -192,13 +487,14 @@
 		}
 		//mail($to_email,$subject,$body,$header);
 	}
-	function sendmailSmtp($to_email,$msg,$subject=""){
-		
+	function sendmailSmtp($to_email,$msg,$subject="",$attch_file='',$name_attch_file=''){
+		global	$mail ;
 
-		// global $email_detail_header;
-		// global $email_detail_footer;
-		// global $email_detail;
-		// global $email_bcc;
+		global $email_detail_header;
+		global $email_detail_footer;
+		global $email_detail;
+		global $email_bcc;
+
 
 		$email_username = email_username;
 		$email_password = email_password;
@@ -212,7 +508,7 @@
 			global $mail ;
 
 			$body             	= $msg;
-			$body             	= preg_replace('/\\\\/','', $body); //Strip backslashes
+			$body             	= $body;//preg_replace('/\\\\/','', $body); //Strip backslashes
 			$subject 			= $subject;//= "=?utf-8?b?".base64_encode($subject)."?=";
 			$mail->IsSMTP();                           // tell the class to use SMTP
 			$mail->CharSet 		= "utf-8";
@@ -225,6 +521,9 @@
 			$mail->Password   	= $email_password;      // SMTP server password
 			$mail->SMTPSecure 	= $email_stmpsecure;
 			$mail->SMTPAuth 	= true;
+			if(!empty($attch_file)){
+				$mail->addAttachment($attch_file,$name_attch_file);
+			}
 			//$mail->IsSendmail();  // tell the class to use Sendmail
 			
 			$mail->AddAddress($to_email);
@@ -246,9 +545,17 @@
 			$mail->IsHTML(true); // send as HTML
 
 			$mail->Send();
-			echo 'Message has been sent.'.date('H:i:s');
+			// echo 'Message has been sent.'.date('H:i:s');
+			
+			$fp = fopen(DOCUMENT_ROOT.'/log/mail_send.txt', 'a+');
+			fwrite($fp, date('Y-m-d H:i:s').' : '.$to_email.'_'.$subject.'_'.$body.PHP_EOL);
+			fclose($fp);
+
 		} catch (phpmailerException $e) {
-			echo $e->errorMessage();
+			$fp = fopen(DOCUMENT_ROOT.'/log/mail_error.txt', 'a+');
+			fwrite($fp, date('Y-m-d H:i:s').' : '.$to_email.'_'.$subject.'_'.$body.'_'.$e->errorMessage().PHP_EOL);
+			fclose($fp);
+			// echo $e->errorMessage();
 		}
 	}
 	function function_error($input){
@@ -271,6 +578,22 @@
 		}
 		return $result;
 	}
+	function hasSession($key) {
+		if (isset($key)&&isset($_SESSION[$key])) {
+			return true;
+			exit();
+		}
+		return false;
+	}
+	function getSession($key) {
+		if (isset($key)&&isset($_SESSION[$key])) {
+			$result = $_SESSION[$key];
+			return true;
+			exit();
+		}
+		return false;
+	}
+	
 	function session($val=""){
 		$result = '';
 		if(isset($_SESSION[$val])){
@@ -342,14 +665,46 @@
 		}
 		return $result;
 	}
-	function upload($var,$path,$img_profile_name=""){
+	function convertFileMultiple($files) {
+		$result = array();
+		foreach ($files['name'] as $key => $name) {
+			$result[] = array(
+				'name'     => $name,
+				'type'     => $files['type'][$key],
+				'tmp_name' => $files['tmp_name'][$key],
+				'error'    => $files['error'][$key],
+				'size'     => $files['size'][$key]
+			);
+		}
+		return $result;
+	}
+	function upload_excel($var=array(),$path,$img_profile_name=""){
+		$result = false;
+		$arr_ext = array(
+			'application/vnd.ms-excel',
+			'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+		);
+
+		if(in_array($var["type"],$arr_ext)){
+			if(empty($img_profile_name)){
+				$img_profile_name = $var["name"];
+			}
+			
+			if(move_uploaded_file($var["tmp_name"],$path.$img_profile_name)){
+				$result = true;
+			}
+			return $result;
+		}
+		
+	}
+	function upload($var=array(),$path,$img_profile_name=""){
 		if(empty($img_profile_name)){
 			$img_profile_name = $var["name"];
 		}
-		$var = $_FILES[$var];
+		// $var = $_FILES[$var];
 		$result = false;
-		if(move_uploaded_file($var["tmp_name"],$path.$img_profile_name)){
-			$result = true;
+		if(move_uploaded_file($var["tmp_name"],$path.$img_profile_name.'_'.$var["name"])){
+			$result = $img_profile_name.'_'.$var["name"];
 		}
 		return $result;
 	}
@@ -470,6 +825,36 @@
 
 		return $result_json;
 	}  
+	function api_test($path,$type = 'get',$params = array(), $output = NULL){
+
+		$get_url = $path;
+		// echo $get_url;exit();
+		$cURL = curl_init();
+		curl_setopt($cURL, CURLOPT_URL, trim($get_url));
+
+		if($type != 'get') {
+			curl_setopt($cURL, CURLOPT_CUSTOMREQUEST, "POST");  
+			curl_setopt($cURL, CURLOPT_POSTFIELDS, http_build_query($params));
+		}
+
+		//curl_setopt($cURL, CURLOPT_HTTPGET, true);
+		curl_setopt($cURL, CURLOPT_RETURNTRANSFER,TRUE);
+		// curl_setopt($cURL, CURLOPT_HTTPHEADER, array(
+		// 		//'Content-Type: application/json',
+		// 		'Accept: application/json'
+		// ));
+		$exec = curl_exec($cURL);
+		$info = curl_getinfo($cURL);
+		// $exec = trim($exec, "\xEF\xBB\xBF");
+		// if($output == 'array') {
+		// 	$result_json = json_decode($exec, true);
+		// } else {
+		// 	$result_json = json_decode($exec);
+		// }
+		curl_close($cURL);
+		
+		return $info;
+	}
 	function api($path,$type = 'get',$params = array(), $output = NULL){
 
 		global $mdir_api;

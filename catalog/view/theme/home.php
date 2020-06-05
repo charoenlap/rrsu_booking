@@ -66,19 +66,24 @@
               <hr>
             </div>
           </div>
-					<div class="row">
-						<div class="col-md-12 mb-3">
-							<label for="">รหัสนักศึกษา</label>
-							<input type="text" class="form-control rounded-0">
-						</div>
-						<div class="col-md-12 mb-3">
-							<label for="">รหัส</label>
-							<input type="password" class="form-control rounded-0">
-						</div>
-						<div class="col-md-12">
-							<a href="<?php echo route('index/home'); ?>" class="btn btn-primary rounded-0 w-100">SIGN IN</a>
-						</div>
-					</div>
+          <?php if(!empty($result)){?>
+          <p class="alert alert-danger">โปรตรวจสอบการเข้าสู่ระบบอีกครั้งหนึ่ง</p>
+          <?php } ?>
+					<form action="<?php echo $action;?>" method="POST">
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label for="">รหัสนักศึกษา</label>
+                <input type="text" name="stu_code" class="form-control rounded-0">
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="">รหัส</label>
+                <input type="password" name="stu_password" class="form-control rounded-0">
+              </div>
+              <div class="col-md-12">
+                <input type="submit" class="btn btn-primary rounded-0 w-100" value="SIGN IN">
+              </div>
+            </div>     
+          </form>
 				</div>
 			</div>
 		</div>

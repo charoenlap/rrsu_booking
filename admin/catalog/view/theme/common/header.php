@@ -98,7 +98,7 @@
             <nav class="iq-sidebar-menu">
                <ul class="iq-menu">
                   <li class="iq-menu-title"><i class="ri-separator"></i><span>Main</span></li>
-                  <li id="dashboard"><a href="<?php echo route('dashboard/dashboard'); ?>" class="iq-waves-effect"><i class="las la-home"></i><span>Dashboard</span></a></li>
+                  <li id="dashboard"><a href="<?php echo route('dashboard/dashboard'); ?>" class="iq-waves-effect"><i class="las la-home"></i><span>หน้าหลัก</span></a></li>
                   
                   <li id="student"><a href="<?php echo route('student/home'); ?>" class="iq-waves-effect"><i class="las la-user-graduate"></i><span>ข้อมุลนักศึกษา</span></a></li>
                   <!-- <li id="activity"><a href="<?php echo route('activity/home'); ?>" class="iq-waves-effect"><i class="las la-calendar-check"></i><span>กิจกรรม</span></a></li> -->
@@ -264,16 +264,15 @@
                <div class="top-logo">
                   <a href="index.html" class="logo">
                   <img src="assets/images/logo.gif" class="img-fluid" alt="">
-                  <span>Metorik</span>
+                  <span></span>
                   </a>
                </div>
             </div>
             <div class="navbar-breadcrumb">
-               <h5 class="mb-0">Dashboard 2</h5>
+               <h5 class="mb-0"></h5>
                <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
-                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                     <li class="breadcrumb-item active" aria-current="page">Dashboard 2</li>
+                     <li class="breadcrumb-item"><a href="#"></a></li>
                   </ol>
                </nav>
             </div>
@@ -439,11 +438,11 @@
                         <div class="iq-sub-dropdown iq-user-dropdown">
                            <div class="iq-card shadow-none m-0">
                               <div class="iq-card-body p-0 ">
-                                 <div class="bg-primary p-3">
+                                 <!-- <div class="bg-primary p-3">
                                     <h5 class="mb-0 text-white line-height">Hello Nik jone</h5>
                                     <span class="text-white font-size-12">Available</span>
-                                 </div>
-                                 <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
+                                 </div> -->
+                                 <!-- <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">
                                        <div class="rounded iq-card-icon iq-bg-primary">
                                           <i class="ri-file-user-line"></i>
@@ -453,42 +452,10 @@
                                           <p class="mb-0 font-size-12">View personal profile details.</p>
                                        </div>
                                     </div>
-                                 </a>
-                                 <a href="profile-edit.html" class="iq-sub-card iq-bg-primary-success-hover">
-                                    <div class="media align-items-center">
-                                       <div class="rounded iq-card-icon iq-bg-success">
-                                          <i class="ri-profile-line"></i>
-                                       </div>
-                                       <div class="media-body ml-3">
-                                          <h6 class="mb-0 ">Edit Profile</h6>
-                                          <p class="mb-0 font-size-12">Modify your personal details.</p>
-                                       </div>
-                                    </div>
-                                 </a>
-                                 <a href="account-setting.html" class="iq-sub-card iq-bg-primary-danger-hover">
-                                    <div class="media align-items-center">
-                                       <div class="rounded iq-card-icon iq-bg-danger">
-                                          <i class="ri-account-box-line"></i>
-                                       </div>
-                                       <div class="media-body ml-3">
-                                          <h6 class="mb-0 ">Account settings</h6>
-                                          <p class="mb-0 font-size-12">Manage your account parameters.</p>
-                                       </div>
-                                    </div>
-                                 </a>
-                                 <a href="privacy-setting.html" class="iq-sub-card iq-bg-primary-secondary-hover">
-                                    <div class="media align-items-center">
-                                       <div class="rounded iq-card-icon iq-bg-secondary">
-                                          <i class="ri-lock-line"></i>
-                                       </div>
-                                       <div class="media-body ml-3">
-                                          <h6 class="mb-0 ">Privacy Settings</h6>
-                                          <p class="mb-0 font-size-12">Control your privacy parameters.</p>
-                                       </div>
-                                    </div>
-                                 </a>
+                                 </a> -->
+                                 
                                  <div class="d-inline-block w-100 text-center p-3">
-                                    <a class="iq-bg-danger iq-sign-btn" href="<?php echo route('signin'); ?>" role="button">Sign out<i class="ri-login-box-line ml-2"></i></a>
+                                    <a class="iq-bg-danger iq-sign-btn" href="<?php //echo route('signin'); ?>" role="button">ออกจากระบบ<i class="ri-login-box-line ml-2"></i></a>
                                  </div>
                               </div>
                            </div>

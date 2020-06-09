@@ -73,19 +73,20 @@
   <div class="row my-3">
     <div class="col-md-4">
       <a href="<?php echo route('activity/home'); ?>" class="menu-card" id="activity">
-        <img src="uploads/setting/<?php echo $banner_1; ?>" alt="" class="w-100">
+        <!-- <img src="" alt="" class="w-100"> -->
+        <div style="background: url('uploads/setting/<?php echo $banner_1; ?>');background-size:cover;background-position: center;height:140px;"></div>
         <p>ตรวจสอบกิจกรรมที่ได้เข้าร่วม</p>
       </a>
     </div>
     <div class="col-md-4">
       <a href="<?php echo route('check/home'); ?>" class="menu-card" id="check">
-        <img src="uploads/setting/<?php echo $banner_2; ?>" alt="" class="w-100">
+        <div style="background: url('uploads/setting/<?php echo $banner_2; ?>');background-size:cover;background-position: center;height:140px;"></div>
         <p>ตรวจสอบคะแนนพฤติกรรม</p>
       </a>
     </div>
     <div class="col-md-4">
       <a href="<?php echo route('booking/home'); ?>" class="menu-card" id="booking">
-        <img src="uploads/setting/<?php echo $banner_3; ?>" alt="" class="w-100">
+        <div style="background: url('uploads/setting/<?php echo $banner_3; ?>');background-size:cover;background-position: center;height:140px;"></div>
         <p>เข้าจองกิจกรรม</p>
       </a>
     </div>

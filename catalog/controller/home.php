@@ -18,7 +18,7 @@
 	    			$this->setSession('stu_lname',$result_login['data']['stu_lname']);
 	    			$this->setSession('stu_group',$result_login['data']['stu_group']);
 	    			$this->setSession('stu_branch',$result_login['data']['stu_branch']);
-	    			$this->setSession('stu_point_behavior',$result_login['data']['stu_point_event']);
+	    			$this->setSession('stu_point_event',$result_login['data']['stu_point_event']);
 	    			$this->setSession('stu_point_behavior',$result_login['data']['stu_point_behavior']);
 	    			$this->setSession('stu_code_edu',$result_login['data']['stu_code_edu']);
 	    			redirect('index/home');

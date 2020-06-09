@@ -10,18 +10,7 @@
                            <h4 class="card-title">ข้อมูลพฤติกรรม</h4>
                         </div>
                         <div class="iq-card-header-toolbar d-flex align-items-center">
-                           <div class="dropdown">
-                              <span class="dropdown-toggle text-primary" id="dropdownMenuButton-5" data-toggle="dropdown">
-                              <i class="ri-more-2-fill"></i>
-                              </span>
-                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton-5">
-                                 <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                 <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                 <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                 <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                 <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                              </div>
-                           </div>
+                           <a href="<?php echo route('behavior/form'); ?>" class="btn btn-primary">เพิ่มกิจกรรม</a>
                         </div>
                      </div>
                      <div class="iq-card-body">
@@ -29,21 +18,23 @@
                            <table class="table mb-0 table-bordered" id="datatables">
                               <thead>
                                  <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">name</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Last Update</th>
-                                    <th scope="col" class="text-center">Action</th>
+                                    <th scope="col" width="50px">ลำดับ</th>
+                                    <th scope="col">รหัสนักศึกษา</th>
+                                    <th scope="col">หมายเหตุ</th>
+                                    <th scope="col">คะแนน</th>
+                                    <th scope="col">วันที่สร้าง</th>
                                  </tr>
                               </thead>
                               <tbody>
+                                 <?php $i=1;foreach($list_stu_behavior['data'] AS $val): ?>
                                  <tr>
-                                    <td>1</td>
-                                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
-                                    <td></td>
-                                    <td>30/12/2019</td>
-                                    <td class="text-center"><button class="btn btn-primary">Edit</button></td>
+                                    <td><?php echo $i; ?></td>
+                                    <td><?php echo $val['stu_code']; ?></td>
+                                    <td><?php echo $val['behavior_type_name']; ?></td>
+                                    <td>(- <?php echo (int)$val['behavior_point']; ?>)</td>
+                                    <td><?php echo (!empty($val['date_create'])?date_f($val['date_create'],'Y-m-d'):''); ?></td>
                                  </tr>
+                              <?php $i++;endforeach; ?>
                               </tbody>
                            </table>
                         </div>

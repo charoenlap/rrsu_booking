@@ -2,6 +2,15 @@
       <!-- Page Content  -->
       <div id="content-page" class="content-page">
          <div class="container-fluid">
+            <?php if(!empty($result)): ?>
+            <div class="row">
+               <div class="col-md-12">
+                  <p class="text-success alert alert-success">
+                     เพิ่มพฤติกรรมสำเร็จ
+                  </p>
+               </div>
+            </div>
+            <?php endif; ?>
             <div class="row">
                <div class="col-sm-12">
                   <div class="iq-card">
@@ -32,7 +41,7 @@
                                     <td><?php echo $val['stu_code']; ?></td>
                                     <td><?php echo $val['behavior_type_name']; ?></td>
                                     <td>(- <?php echo (int)$val['behavior_point']; ?>)</td>
-                                    <td><?php echo (!empty($val['date_create'])?date_f($val['date_create'],'Y-m-d'):''); ?></td>
+                                    <td><?php echo (!empty($val['date_create'])?date_f($val['date_create'],'Y-m-d H:i:s'):''); ?></td>
                                  </tr>
                               <?php $i++;endforeach; ?>
                               </tbody>

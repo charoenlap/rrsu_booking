@@ -6,9 +6,9 @@
 			);
 			$password = $this->escape($data['password']);
 			$confirmPassword = $this->escape($data['confirmPassword']);
-			$id_student = $this->escape($data['id_student']);
+			$stu_code = $this->escape($data['stu_code']);
 			if( ($password == $confirmPassword) AND !empty($password) ){
-				$sql = "UPDATE booking_student SET stu_password = MD5('".$password."') WHERE id_student = '".(int)$id_student."'";
+				$sql = "UPDATE booking_student SET stu_password = MD5('".$password."') WHERE stu_code = '".(int)$stu_code."'";
 				$result_student = $this->query($sql);
 				// if($result_student->num_rows){
 					$result = array(

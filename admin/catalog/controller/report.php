@@ -2,6 +2,8 @@
 	class reportController extends Controller{
 		public function activity(){
 			$data = array();
+			$event = $this->model('event');
+			$data['listTakeEvent'] = $event->listTakeEvent();
 			$this->view('report/activity',$data);
 		}
 		public function bookingActivity(){

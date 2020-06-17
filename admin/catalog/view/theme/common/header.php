@@ -82,9 +82,9 @@
       <!-- Sidebar  -->
       <div class="iq-sidebar">
          <div class="iq-sidebar-logo d-flex justify-content-between">
-            <a href="index.html">
+            <a href="<?php echo route('dashboard/dashboard'); ?>">
             <img src="assets/images/logo.png" class="img-fluid" alt="">
-            <span>SSRU</span>
+            <span><?php echo "SSRU"; ?></span>
             </a>
             <div class="iq-menu-bt align-self-center">
                <div class="wrapper-menu">
@@ -97,10 +97,10 @@
          <div id="sidebar-scrollbar">
             <nav class="iq-sidebar-menu">
                <ul class="iq-menu">
-                  <li class="iq-menu-title"><i class="ri-separator"></i><span>Main</span></li>
+                  <li class="iq-menu-title"><i class="ri-separator"></i><span></span></li>
                   <li id="dashboard"><a href="<?php echo route('dashboard/dashboard'); ?>" class="iq-waves-effect"><i class="las la-home"></i><span>หน้าหลัก</span></a></li>
                   
-                  <li id="student"><a href="<?php echo route('student/home'); ?>" class="iq-waves-effect"><i class="las la-user-graduate"></i><span>ข้อมุลนักศึกษา</span></a></li>
+                  <li id="student"><a href="<?php echo route('student/home'); ?>" class="iq-waves-effect"><i class="las la-user-graduate"></i><span>ข้อมูลนักศึกษา</span></a></li>
                   <!-- <li id="activity"><a href="<?php echo route('activity/home'); ?>" class="iq-waves-effect"><i class="las la-calendar-check"></i><span>กิจกรรม</span></a></li> -->
                   <li id="activity">
                      <a href="javascript:void(0);" class="iq-waves-effect"><i class="las la-calendar-check"></i><span>กิจกรรม</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
@@ -113,10 +113,10 @@
                   <li id="report">
                      <a href="javascript:void(0);" class="iq-waves-effect"><i class="las la-file"></i><span>รายงาน</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                      <ul class="iq-submenu">
-                        <li id="r1"><a href="<?php echo route('report/activity'); ?>">รายงานเข้าร่วมกิจกรรม</a></li>
-                        <li id="r2"><a href="<?php echo route('report/bookingActivity'); ?>">รายงานการจองกิจกรรม</a></li>
+                        <li id="r1"><a href="<?php echo route('report/activity'); ?>">รายงานเข้าจองกิจกรรม</a></li>
+                        <!-- <li id="r2"><a href="<?php echo route('report/bookingActivity'); ?>">รายงานการจองกิจกรรม</a></li>
                         <li id="r3"><a href="<?php echo route('report/statusActivity'); ?>">รายงานสรุปผ่าน/ไม่ผ่าน กิจกรรม</a></li>
-                        <li id="r4"><a href="<?php echo route('report/checkActivity'); ?>">รายงานตรวจสอบชั่วโมงกิจกรรม</a></li>
+                        <li id="r4"><a href="<?php echo route('report/checkActivity'); ?>">รายงานตรวจสอบชั่วโมงกิจกรรม</a></li> -->
                      </ul>
                   </li>
                   <li id="behavior"><a href="<?php echo route('behavior/home'); ?>" class="iq-waves-effect"><i class="las la-user-tag"></i><span>ข้อมูลพฤติกรรม</span></a></li>

@@ -90,7 +90,7 @@
 													<tr>
 														<th rowspan="2" class="align-middle text-center">ชั้นปีที่</th>
 														<th rowspan="2" class="align-middle text-center">ประเภทกิจกรรม</th>
-														<th rowspan="2" class="align-middle text-center">ชั่วโมงกิจกรรม</th>
+														<th rowspan="2" class="align-middle text-center">หน่วยกิจกรรม</th>
 														<th rowspan="2" class="align-middle text-center">สถานะกิจกรรม</th>
 														<th colspan="2" class="text-center">สรุปสถานะกิจกรรม</th>
 													</tr>
@@ -103,11 +103,11 @@
 													<?php $sum_unit = 0; $i=1;foreach($list_event_approve as $val){ ?>
 													<tr>
 														<td class="text-center"><?php echo $i; ?></td>
-														<td><?php echo $val['event_type']; ?></td>
-														<td><?php echo $val['event_hour']; ?></td>
-														<td></td>
-														<td class="text-center"></td>
-														<td class="text-center"><span class="text-danger"></span></td>
+														<td><?php echo $val['event_type_name']; ?></td>
+														<td><?php echo $val['event_unit']; ?></td>
+														<td>ผ่าน</td>
+														<td class="text-center"><?php echo $val['event_hour']; ?></td>
+														<td class="text-center"><span class="text-success">ผ่าน</span></td>
 													</tr>
 													<?php $i++;} ?>
 												</tbody>

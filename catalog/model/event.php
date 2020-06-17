@@ -2,11 +2,13 @@
 	class EventModel extends db {
 		public function listApproveEvent($data = array()){
 			$result = array();
-			$id_student = (int)$data['id_student'];
+			$stu_code = (int)$data['stu_code'];
 			$t_e_status = (int)$data['t_e_status'];
 			$sql = "SELECT * FROM booking_take_event 
-			LEFT JOIN booking_event ON booking_take_event.id_event = booking_event.id_event 
-			WHERE id_student='".$id_student."' AND t_e_status = '".$t_e_status."'";
+			LEFT JOIN booking_event_sub ON booking_take_event.id_event_sub = booking_event_sub.id_event_sub  
+			LEFT JOIN booking_event ON booking_event_sub.id_event = booking_event.id_event  
+			LEFT JOIN booking_event_type ON booking_event_sub.id_event_type = booking_event_type.id_event_type 
+			WHERE stu_code='".$stu_code."' AND t_e_status = '".$t_e_status."'";
 			$result_event = $this->query($sql);
 			foreach($result_event->rows as $val){
 				$result[] = array(
@@ -14,7 +16,7 @@
 					'event_name' 		=> $val['event_name'],
 					'event_date_start'	=> $val['event_date_start'],
 					'event_unit'		=> $val['event_unit'],
-					'event_type'		=> '',
+					'event_type_name'	=> $val['event_type_name'],
 					'event_hour'		=> $val['event_hour'],
 					'status_event'		=>	''
 				);
@@ -26,8 +28,8 @@
 				'result' => 'fail'
 			);
 			$id_take_event = (int)$data['id_take_event'];
-			$id_student = (int)$data['id_student'];
-			$sql = "SELECT * FROM booking_take_event WHERE id_take_event='".$id_take_event."' AND id_student='".$id_student."'";
+			$stu_code = (int)$data['stu_code'];
+			$sql = "SELECT * FROM booking_take_event WHERE id_take_event='".$id_take_event."' AND stu_code='".$stu_code."'";
 			$result_check = $this->query($sql);
 			if($result_check->num_rows>0){
 				$result = array(
@@ -39,10 +41,10 @@
 		}
 		public function getEvent($data=array()){
 			$id_event = (int)$data['id_event'];
-			$id_student = (int)$data['id_student'];
+			$stu_code = (int)$data['stu_code'];
 			$sql = "SELECT * FROM booking_take_event 
 			LEFT JOIN booking_event ON booking_take_event.id_event = booking_event.id_event 
-			WHERE booking_take_event.id_event='".$id_event."' AND id_student='".$id_student."'";
+			WHERE booking_take_event.id_event='".$id_event."' AND stu_code='".$stu_code."'";
 			$result_check = $this->query($sql);
 			if($result_check->num_rows>0){
 				$result = $result_check->row;
@@ -76,10 +78,10 @@
 		public function getTakeEvent($data=array()){
 			$result = array();
 			$id_student = (int)$data['id_student'];
-			$status = 0;
+			$status = (int)$data['status'];
 			$sql = "SELECT * FROM booking_take_event 
 			LEFT JOIN booking_event ON booking_take_event.id_event = booking_event.id_event 
-			WHERE id_student = '".$id_student."' AND (t_e_status = '".$status."' or t_e_status = '3') ";
+			WHERE id_student = '".$id_student."' AND (t_e_status = '".$status."') ";
 			$result = $this->query($sql)->rows;
 			return $result;
 		}

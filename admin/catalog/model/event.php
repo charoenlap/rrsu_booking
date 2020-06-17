@@ -1,5 +1,18 @@
 <?php  
 	class eventModel extends db {
+		public function listTakeEvent($data=array()){
+			$result = array();
+			$limit = '';
+			if(isset($data['limit'])){
+				$limit = ' LIMIT '.$data['limit'];
+			}
+			$sql = "SELECT * FROM booking_take_event 
+			LEFT JOIN booking_event ON booking_take_event.id_event = booking_event.id_event 
+			LEFT JOIN booking_student ON booking_take_event.stu_code = booking_student.stu_code ORDER BY id_take_event ".$limit;
+			$query = $this->query($sql);
+			$result = $query->rows;
+			return $result;
+		}
 		public function listUploadEvent($data = array()){
 			$result = array();
 			$sql = "SELECT * FROM booking_upload_event ORDER BY id_event_file DESC";
@@ -87,7 +100,12 @@
 		}
 		public function getEvent($data=array()){
 			$result = array();
-			$sql_booking_event = "SELECT * FROM booking_event";
+			$id_event = (int)(isset($data['id_event'])?$data['id_event']:'');
+			$where = "";
+			if(!empty($id_event)){
+				$where = " WHERE id_event = '".$id_event."'";
+			}
+			$sql_booking_event = "SELECT * FROM booking_event ".$where;
 			$result_booking_event = $this->query($sql_booking_event);
 			// $result_booking_event_num_rows = $this->query("SELECT * ".$sql_booking_event);
 			$result = array(

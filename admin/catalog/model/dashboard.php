@@ -1,11 +1,17 @@
 <?php 
 	class DashboardModel extends db {
-		public function getTotalGirls($data = array()){
+		public function getDashboard($data = array()){
 			$result = array();
-			$sql = "SELECT COUNT(girls_id) AS total_girls FROM dh_girls WHERE girls_type='1' OR girls_type='3' OR girls_type='4'";
-			$result['total_girls'] = $this->query($sql)->row['total_girls'];
-			$sql = "SELECT COUNT(girls_id) AS total_girls_host FROM dh_girls WHERE girls_type='6' OR girls_type='7'";
-			$result['total_girls_host'] = $this->query($sql)->row['total_girls_host'];
+			$sql_student = "SELECT count(id_student) AS sum_student FROM booking_student";
+			$sql_event = "SELECT count(id_event) AS sum_event FROM booking_event";
+			$sql_take_event = "SELECT count(id_take_event) AS sum_take_event FROM booking_take_event";
+			$sql_behavior = "SELECT count(id_behavior) AS sum_behavior FROM booking_behavior";
+			$result = array(
+				'sum_student' 		=> (int)$this->query($sql_student)->row['sum_student'],
+				'sum_event' 		=> (int)$this->query($sql_event)->row['sum_event'],
+				'sum_take_event' 	=> (int)$this->query($sql_take_event)->row['sum_take_event'],
+				'sum_behavior' 		=> (int)$this->query($sql_behavior)->row['sum_behavior']
+			);
 
 			return $result;
 		}

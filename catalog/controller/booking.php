@@ -91,11 +91,12 @@
 		public function printbook(){
 			$data = array();
 			$id_student = id_student();
+			$stu_code = $this->getSession('stu_code');
 			$id_take_event = get('id_take_event');
 			$data['id_take_event'] = $id_take_event;
 			$event = $this->model('event');
 			$data_check = array(
-				'id_student' => $id_student,
+				'stu_code' => $stu_code,
 				'id_take_event'	=> $id_take_event
 			);
 			$result_check = $event->check_event($data_check);
@@ -112,11 +113,12 @@
 				$student = $this->model('student');
 
 				$data_student = array(
-					'id_student' => id_student()
+					'id_student' => id_student(),
+					'stu_code'	=> $stu_code
 				);
 				$data['student_detail'] = $student->getStudent($data_student);
 				$data_check = array(
-					'id_student' => $id_student,
+					'stu_code' => $stu_code,
 					'id_event'	=> $id_event
 				);
 				$data['detail'] = $event->getEvent($data_check);

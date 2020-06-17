@@ -14,7 +14,7 @@
                                  </a>
                                  <div>
                                     <h6>ข้อมูลนักศึกษา :</h6>
-                                    <h3>1</h3>
+                                    <h3><?php echo $dashboard['sum_student']; ?></h3>
                                  </div>
                               </div>
                            </div>
@@ -29,7 +29,7 @@
                                  </a>
                                  <div>
                                     <h6>กิจกรรม :</h6>
-                                    <h3>15</h3>
+                                    <h3><?php echo $dashboard['sum_event']; ?></h3>
                                  </div>
                               </div>
                            </div>
@@ -43,8 +43,8 @@
                                     <i class="las la-file"></i>
                                  </a>
                                  <div>
-                                    <h6>รายงาน :</h6>
-                                    <h3>5</h3>
+                                    <h6>การเข้าร่วมกิจกรรม :</h6>
+                                    <h3><?php echo $dashboard['sum_take_event']; ?></h3>
                                  </div>
                               </div>
                            </div>
@@ -59,7 +59,7 @@
                                  </a>
                                  <div>
                                     <h6>ข้อมูลพฤติกรรม :</h6>
-                                    <h3>5</h3>
+                                    <h3><?php echo $dashboard['sum_behavior']; ?></h3>
                                  </div>
                               </div>
                            </div>
@@ -76,7 +76,7 @@
                         <div class="iq-header-title">
                            <h4 class="card-title">กิจกรรม</h4>
                         </div>
-                        <div class="iq-card-header-toolbar d-flex align-items-center">
+                        <!-- <div class="iq-card-header-toolbar d-flex align-items-center">
                            <div class="dropdown">
                               <span class="dropdown-toggle text-primary" id="dropdownMenuButton-5" data-toggle="dropdown">
                               <i class="ri-more-2-fill"></i>
@@ -89,26 +89,28 @@
                                  <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
                               </div>
                            </div>
-                        </div>
+                        </div> -->
                      </div>
                      <div class="iq-card-body">
                         <div class="table-responsive">
                            <table class="table mb-0 table-borderless">
                               <thead>
                                  <tr>
-                                    <th scope="col" class="text-center">No</th>
-                                    <th scope="col">กิจกรรม</th>
-                                    <th scope="col">ประเภทกิจกรรม</th>
+                                    <th scope="col" class="text-center">ลำดับ</th>
+                                    <th scope="col">รหัสนักศึกษา</th>
+                                    <th scope="col">ชื่อนักศึกษา</th>
+                                    <th>ชื่อกิจกรรม</th>
                                  </tr>
                               </thead>
                               <tbody>
+                                 <?php $i=1;foreach($listTakeEvent as $val): ?>
                                  <tr>
-                                    <td class="text-center">1</td>
-                                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
-                                    <td>
-                                       <div class="badge badge-pill badge-success">Running</div>
-                                    </td>
+                                    <td class="text-center"><?php echo $i; ?></td>
+                                    <td><?php echo $val['stu_code']; ?></td>
+                                    <td><?php echo $val['stu_name'].' '.$val['stu_lname']; ?></td>
+                                    <td><?php echo $val['event_name']; ?></td>
                                  </tr>
+                                 <?php $i++;endforeach; ?>
                               </tbody>
                            </table>
                         </div>

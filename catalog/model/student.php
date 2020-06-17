@@ -26,16 +26,37 @@
 				(stu_password='' OR stu_password IS NULL))";
 				$result_student = $this->query($sql);
 				if($result_student->num_rows){
+					$stu_code = $result_student->row['stu_code'];
+					$sql_behavior = "SELECT SUM(behavior_point) as sum_behavior FROM booking_behavior 
+					 WHERE stu_code = '".$stu_code."'";
+					$result_behavior = $this->query($sql_behavior);
+					// $result = $result_behavior->rows;
+
+
+
+
+					$sql_take = "SELECT SUM(event_unit) AS event_unit FROM booking_take_event 
+					LEFT JOIN booking_event_sub ON booking_take_event.id_event_sub = booking_event_sub.id_event_sub  
+					LEFT JOIN booking_event ON booking_event_sub.id_event = booking_event.id_event  
+					LEFT JOIN booking_event_type ON booking_event_sub.id_event_type = booking_event_type.id_event_type 
+					WHERE stu_code='".$stu_code."'";
+					$result_take_event = $this->query($sql_take);
+
+
+
+					$result_student->row['stu_point_behavior'] = 100;
 					$result = array(
-						'result' 	=> 'success',
-						'data' 		=> $result_student->row
+						'result' 		=> 'success',
+						'data' 			=> $result_student->row,
+						'behavior'		=> $result_behavior->row['sum_behavior'],
+						'event_unit'	=> $result_take_event->row['event_unit']
 					);
 				}
 			}
 			return $result;
 		}
 		public function getStudent($data = array()){
-			$id_student = (int)$data['id_student'];
+			$stu_code = (int)$data['stu_code'];
 			$result = array();
 			$sql = "SELECT * FROM booking_student
 				JOIN booking_type_student
@@ -48,7 +69,7 @@
 				ON booking_student.center_code = booking_center.center_code 
 				JOIN booking_level
 				ON booking_student.level_code = booking_level.level_code
-			WHERE booking_student.id_student = '".$id_student."'
+			WHERE booking_student.stu_code = '".$stu_code."'
 			";
 			$result_student = $this->query($sql);
 			$result = $result_student->row;

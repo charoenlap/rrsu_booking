@@ -2,7 +2,9 @@
 	class behaviorModel extends db {
 		public function listStuBehavior($data=array()){
 			$data = array();
-			$sql_list = "SELECT * FROM booking_behavior LEFT JOIN booking_behavior_type ON booking_behavior.id_behavior_type = booking_behavior_type.id_behavior_type";
+			$sql_list = "SELECT * FROM booking_behavior 
+			LEFT JOIN booking_behavior_type ON booking_behavior.id_behavior_type = booking_behavior_type.id_behavior_type
+			ORDER BY id_behavior DESC";
 			$result_behavior = $this->query($sql_list);
 			$result = array(
 				'num_rows' 	=>  $result_behavior->num_rows,

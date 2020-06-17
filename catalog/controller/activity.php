@@ -17,7 +17,7 @@
 
 			$event = $this->model('event');
 			$data_select = array(
-				'id_student' => $id_student,
+				'stu_code' => $this->getSession('stu_code'),
 				't_e_status' => 3
 			);
 			$data['list_event_approve'] = $event->listApproveEvent($data_select);

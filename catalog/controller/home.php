@@ -3,7 +3,8 @@
 	    public function index() {
 	    	$data = array();
 	    	if(method_post()){
-	    		$ip = get_client_ip();
+	    		// $ip = get_client_ip();
+	    		$ip = '110.170.181.52';
 	    		// var_dump($ip);exit();
 	    		//KEY // 6Lf6raYZAAAAAKGMQqYCsUjECh6uJ7K5j_lZ0nWz
 	    		$url = "https://www.google.com/recaptcha/api/siteverify";
@@ -13,8 +14,8 @@
 	    			'response' => $_POST['g-recaptcha-response'],
 	    			'remoteip'	=> $ip
 	    		);
-	    		var_dump($params);
-	    		exit();
+	    		// var_dump($params);
+	    		// exit();
 	    		$result = api_test($url,$type,$params);
 	    		if($result['success'] == 'true'){
 	    			$student = $this->model('student');

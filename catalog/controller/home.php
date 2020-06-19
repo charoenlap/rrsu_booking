@@ -47,7 +47,8 @@
 		    			redirect('home&result=fail');
 		    		}
 	    		}else{
-	    			redirect('home&result=fail_captcha');
+	    			var_dump($result);
+	    			// redirect('home&result=fail_captcha');
 	    		}
 	    	}
 	    	$data['result'] = get('result');

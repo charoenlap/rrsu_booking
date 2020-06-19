@@ -13,8 +13,8 @@
 	    			'response' => $_POST['g-recaptcha-response'],
 	    			'remoteip'	=> $ip
 	    		);
-	    		// var_dump($params);
-	    		// exit();
+	    		var_dump($params);
+	    		exit();
 	    		$result = api_test($url,$type,$params);
 	    		if($result['success'] == 'true'){
 	    			$student = $this->model('student');

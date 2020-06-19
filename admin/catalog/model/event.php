@@ -1,5 +1,19 @@
 <?php  
 	class eventModel extends db {
+		public function delEvent($data=array()){
+			// $id_event = (int)$data['id_event'];
+			// $result = array(
+			// 	'result' => 'fail'
+			// );
+			// $result_del = $this->delete('event',"id_event = '".$id_event."'");
+			// $result_del = $this->delete('event_sub',"id_event = '".$id_event."'");
+			// if($result_del){
+			// 	$result = array(
+			// 		'result' => 'success'
+			// 	);
+			// }
+			// return $result;
+		}
 		public function listTakeEvent($data=array()){
 			$result = array();
 			$limit = '';

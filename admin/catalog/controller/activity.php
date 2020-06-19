@@ -6,6 +6,9 @@
 			$data['list_event'] = $result_event['data'];
 			$this->view('activity/home',$data);
 		}
+		public function delEvent(){
+			
+		}
 		public function upload(){
 			$data = array();
 			$data['action'] = route('activity/upload');

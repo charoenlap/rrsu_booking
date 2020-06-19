@@ -4,7 +4,8 @@
       <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Metorik - Responsive Bootstrap 4 Admin Dashboard Template</title>
+      <title>SSRU - ADMIN</title>
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
       <!-- Favicon -->
       <link rel="shortcut icon" href="images/favicon.ico" />
       <!-- Bootstrap CSS -->
@@ -15,6 +16,13 @@
       <link rel="stylesheet" href="assets/css/style.css">
       <!-- Responsive CSS -->
       <link rel="stylesheet" href="assets/css/responsive.css">
+      <script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('g-recaptcha', {
+          'sitekey' : '6Lf6raYZAAAAANbx3W_S-0frleppYd_9p6U4CcJ2'
+        });
+      };
+    </script>
    </head>
    <body>
       <!-- loader Start -->
@@ -40,6 +48,9 @@
                                     <!-- <a href="#" class="float-right">Forgot password?</a> -->
                                     <input type="password" class="form-control mb-0" id="" placeholder="Password" name="password">
                                 </div>
+                                <div class="col-md-12">
+                                  <div class="g-recaptcha" id="g-recaptcha" data-sitekey="6Lf6raYZAAAAANbx3W_S-0frleppYd_9p6U4CcJ2"></div>
+                                </div>
                                 <div class="d-inline-block w-100">
                                     <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1">
@@ -64,6 +75,9 @@
         <!-- Sign in END -->
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
       <script src="assets/js/jquery.min.js"></script>
       <script src="assets/js/popper.min.js"></script>
       <script src="assets/js/bootstrap.min.js"></script>

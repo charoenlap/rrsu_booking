@@ -3,20 +3,27 @@
 	    public function index() {
 	    	$data = array();
 	    	if(method_post()){
+
+	    		$ip = get_client_ip();
+				if($ip=="::1"){
+					$ip = "localhost";
+				}else{
+					$ip = '110.170.181.52';
+				}
 	    		// $ip = get_client_ip();
-	    		$ip = '110.170.181.52';
 	    		// var_dump($ip);exit();
 	    		//KEY // 6Lf6raYZAAAAAKGMQqYCsUjECh6uJ7K5j_lZ0nWz
 	    		$url = "https://www.google.com/recaptcha/api/siteverify";
 	    		$type = "post";
 	    		$params = array(
 	    			'secret' => '6Lf6raYZAAAAAKGMQqYCsUjECh6uJ7K5j_lZ0nWz',
-	    			'response' => $_POST['g-recaptcha-response'],
+	    			'response' => (isset($_POST['g-recaptcha-response'])?$_POST['g-recaptcha-response']:''),
 	    			'remoteip'	=> $ip
 	    		);
-	    		// var_dump($params);
-	    		// exit();
 	    		$result = api_test($url,$type,$params);
+
+	    		var_dump($result);
+	    		exit();
 	    		if($result['success'] == 'true'){
 	    			$student = $this->model('student');
 		    		$data_login = array(

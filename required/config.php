@@ -1,5 +1,4 @@
 <?php
-	
 	$base = str_replace('required', '', __DIR__);
 	define('MURL','http://localhost/ssru_booking/');
 	// define('MURL','https://www.fsoftpro.com/dohung/');

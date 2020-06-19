@@ -21,7 +21,7 @@
 	    			'remoteip'	=> $ip
 	    		);
 	    		$result = api_test($url,$type,$params);
-
+	    		$result = json_decode($result,true);
 	    		if($result['success'] == 'true'){
 	    			$student = $this->model('student');
 		    		$data_login = array(

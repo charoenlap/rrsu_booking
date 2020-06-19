@@ -1,6 +1,7 @@
 <?php 
 	class DashboardController extends Controller {
 	    public function dashboard(){
+	    	check_admin();
 	    	$data = array();
 	    	$dashboard = $this->model('dashboard');
 	    	$data['dashboard'] = $dashboard->getDashboard();

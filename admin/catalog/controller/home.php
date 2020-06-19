@@ -31,6 +31,7 @@
 					);
 					$result_admin = $admin->login($data_select);
 					if($result_admin['result'] == 'success'){
+						$this->setSession('login_admin',1);
 						redirect('dashboard/dashboard');
 					}else{
 						redirect('home&result=fail');

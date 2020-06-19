@@ -1,11 +1,13 @@
 <?php  
 	class bannerController extends Controller{
 		public function home(){
+			check_admin();
 			$setting = $this->model('setting');
 			$data['setting'] = $setting->getBanner();
 			$this->view('banner/home',$data);
 		}
 		public function subBanner(){
+			check_admin();
 			$data = array();
 			$id_setting = get('id_setting');
 			$data['id_setting'] = $id_setting;
@@ -38,6 +40,7 @@
 			$this->view('banner/subBanner',$data);
 		}
 		public function addBanner(){
+			check_admin();
 			$this->view('banner/addBanner');
 		}
 	}

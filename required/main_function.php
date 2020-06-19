@@ -1,4 +1,12 @@
 <?php
+	function check_admin(){
+		$login_admin = (int)(isset($_SESSION['login_admin'])?$_SESSION['login_admin']:'');
+		if($login_admin==1){
+
+		}else{
+			redirect('home');
+		}
+	}
 	function getCurrentYear($stu_year){
 		$result = 0;
 		$year = date('Y')+543;

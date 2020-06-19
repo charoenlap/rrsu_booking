@@ -1,6 +1,7 @@
 <?php 
 	class ApiController extends Controller {
 	    public function girl_not_leave_2_day() {
+	    	check_admin();
 	    	$data = array(
 	    		'no'=>'',
 	    		'nickname'=>'',
@@ -63,6 +64,7 @@
  	    // 	$this->view('girl/list_leavework_2_day',$data);
 	    }
 	    public function girl_not_leave_2_day_thai() {
+	    	check_admin();
 	    	$data = array(
 	    		'no'=>'',
 	    		'nickname'=>'',
@@ -124,6 +126,7 @@
  	    // 	$this->view('girl/list_leavework_2_day',$data);
 	    }
 	    public function girl_holiday() {
+	    	check_admin();
 	    	$date = date('Y-m-d');
 	    	$girls = $this->model('girl');
 	    	$result_girls_holiday = $girls->list_girls_holiday($date);

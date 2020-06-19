@@ -1,15 +1,18 @@
 <?php  
 	class activityController extends Controller{
 		public function home(){
+			check_admin();
 			$event = $this->model('event');
 			$result_event = $event->getEvent();
 			$data['list_event'] = $result_event['data'];
 			$this->view('activity/home',$data);
 		}
 		public function delEvent(){
+			check_admin();
 			
 		}
 		public function upload(){
+			check_admin();
 			$data = array();
 			$data['action'] = route('activity/upload');
 			$data['route'] = 'activity/upload';
@@ -37,6 +40,7 @@
 			$this->view('activity/upload',$data);
 		}
 		public function form(){
+			check_admin();
 			$id_event = get('id_event');
 			if(method_post()){
 				$id_event = $_POST['id_event'];

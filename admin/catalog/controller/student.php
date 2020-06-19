@@ -1,6 +1,7 @@
 <?php  
 	class studentController extends Controller{
 		public function home(){
+			check_admin();
 			$data = array();
 			$student = $this->model('student');
 			$center = $this->model('center');
@@ -50,6 +51,7 @@
 			$this->view('student/home',$data);
 		}
 		public function importExcel(){ 
+			check_admin();
 			$path = 'admin/file/';
 			$name = time().'_'.$_FILES['file']['name'];
 			$result_upload = upload_excel($_FILES['file'],DOCUMENT_ROOT.$path,$name);
@@ -91,6 +93,7 @@
 			
 		}
 		public function exportExcel(){
+			check_admin();
 			$data = array();
 			$student = $this->model('student');
 			$data_excel = $student->exportStudent();

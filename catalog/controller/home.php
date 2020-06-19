@@ -22,8 +22,6 @@
 	    		);
 	    		$result = api_test($url,$type,$params);
 
-	    		var_dump($result);
-	    		exit();
 	    		if($result['success'] == 'true'){
 	    			$student = $this->model('student');
 		    		$data_login = array(
